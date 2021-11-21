@@ -29,8 +29,6 @@ case class Code(private val pegs: Set[Peg]) {
 
 case class Attempt(correct: Int, misplaced: Int)
 
-case class Peg(position: Int, color: Color)
-
 object Color extends Enumeration {
   type Color = Value
 
