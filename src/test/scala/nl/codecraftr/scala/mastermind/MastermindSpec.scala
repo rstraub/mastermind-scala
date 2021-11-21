@@ -1,11 +1,11 @@
 package nl.codecraftr.scala.mastermind
 
-import nl.codecraftr.scala.mastermind.Color.{BLUE, RED, YELLOW}
+import nl.codecraftr.scala.mastermind.Color.{BLUE, GREEN, RED, WHITE, YELLOW}
 import org.scalatest.flatspec.AnyFlatSpec
 
 class MastermindSpec extends AnyFlatSpec {
   private val allBlue = Mastermind(Code(BLUE, BLUE, BLUE, BLUE))
-  private val aBlue = Mastermind(Code(BLUE, RED, RED, RED))
+  private val mixed = Mastermind(Code(BLUE, RED, WHITE, GREEN))
 
   "four wrong pegs" should "count as zero correct, zero misplaced" in {
     val result = allBlue evaluate Code(RED, RED, RED, RED)
@@ -23,12 +23,17 @@ class MastermindSpec extends AnyFlatSpec {
   }
 
   "a misplaced peg" should "count as one misplaced peg" in {
-    val result = aBlue evaluate Code(YELLOW, YELLOW, YELLOW, BLUE)
+    val result = mixed evaluate Code(YELLOW, YELLOW, YELLOW, BLUE)
     assert(result == Result(0, 1))
   }
 
+  "a misplaced and correct peg" should "count as one correct, one misplaced" in {
+    val result = mixed evaluate Code(BLUE, YELLOW, GREEN, YELLOW)
+    assert(result == Result(1, 1))
+  }
+
   "a correct peg" should "have precedence over misplaced pegs" in {
-    val result = aBlue evaluate Code(BLUE, YELLOW, YELLOW, BLUE)
+    val result = mixed evaluate Code(BLUE, YELLOW, YELLOW, BLUE)
     assert(result == Result(1, 0))
   }
 }

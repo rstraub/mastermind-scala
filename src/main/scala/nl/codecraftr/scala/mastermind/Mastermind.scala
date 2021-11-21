@@ -44,5 +44,5 @@ case class Result(correct: Int, misplaced: Int)
 object Color extends Enumeration {
   type Color = Value
 
-  val YELLOW, BLUE, RED = Value
+  val YELLOW, BLUE, RED, WHITE, GREEN = Value
 }
