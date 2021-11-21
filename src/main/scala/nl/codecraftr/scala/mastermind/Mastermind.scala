@@ -40,6 +40,7 @@ case class Code(first: Color, second: Color, third: Color, fourth: Color) {
 }
 
 case class Result(correct: Int, misplaced: Int)
+case class Peg(position: Int, color: Color)
 
 object Color extends Enumeration {
   type Color = Value
