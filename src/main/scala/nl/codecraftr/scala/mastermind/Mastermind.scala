@@ -5,9 +5,14 @@ object Mastermind {
 
   def evaluate(guess: (String, String, String, String)): (Int, Int) = {
     var correct = 0
-    guess.productIterator.foreach(peg =>
-     if (peg == code._1 || peg == code._2 || peg == code._3 || peg == code._3) correct += 1
-    )
+    if (guess._1 == code._1)
+      correct += 1
+    if (guess._2 == code._2)
+      correct += 1
+    if (guess._3 == code._3)
+      correct += 1
+    if (guess._4 == code._4)
+      correct += 1
 
     (correct, 0)
   }
