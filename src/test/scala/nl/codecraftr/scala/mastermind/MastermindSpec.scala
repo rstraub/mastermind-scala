@@ -4,7 +4,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 
 class MastermindSpec extends AnyFlatSpec {
   "four wrong pegs" should "return zero right, zero misplaced" in {
-    val result = Mastermind.evaluate("blue", "blue", "blue", "blue")
+    val result = Mastermind.evaluate("red", "red", "red", "red")
     assert(result == (0, 0))
   }
 
