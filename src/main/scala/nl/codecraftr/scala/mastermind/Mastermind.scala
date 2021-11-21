@@ -6,7 +6,11 @@ case class Mastermind(secret: Code) {
   def evaluate(guess: Code): Result = secret.evaluate(guess)
 }
 
-case class Code(first: Color, second: Color, third: Color, fourth: Color) {
+case class Code(first: Peg, second: Peg, third: Peg, fourth: Peg) {
+  def this(first: Color, second: Color, third: Color, fourth: Color) {
+    this(Peg(1, first), Peg(2, second), Peg(3, third), Peg(4, fourth))
+  }
+
   def evaluate(other: Code): Result = {
     val correct: Int = amountCorrect(other)
     val misplaced: Int = amountMisplaced(other)
@@ -23,7 +27,7 @@ case class Code(first: Color, second: Color, third: Color, fourth: Color) {
     }
   }
 
-  def pegs(): List[Color] = List(first, second, third, fourth)
+  def pegs(): List[Color] = List(first, second, third, fourth).map(_.color)
 
   private def amountCorrect(other: Code) = {
     var correct = 0
