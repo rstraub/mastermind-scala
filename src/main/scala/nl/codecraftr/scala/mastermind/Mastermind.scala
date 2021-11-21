@@ -31,16 +31,10 @@ case class Code(first: Peg, second: Peg, third: Peg, fourth: Peg) {
   private def pegs(): Set[Peg] = Set(first, second, third, fourth)
 
   private def amountCorrect(other: Code) = {
-    var correct = 0
-    if (first == other.first)
-      correct += 1
-    if (second == other.second)
-      correct += 1
-    if (third == other.third)
-      correct += 1
-    if (fourth == other.fourth)
-      correct += 1
-    correct
+    pegs().foldRight(0)((peg, count) =>
+      if (other.pegs().contains(peg)) count + 1
+      else count
+    )
   }
 }
 
