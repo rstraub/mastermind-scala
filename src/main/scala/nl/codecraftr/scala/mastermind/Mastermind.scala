@@ -27,8 +27,8 @@ case class Code(first: Peg, second: Peg, third: Peg, fourth: Peg) {
     }
   }
 
-  def colors(): List[Color] = pegs().map(_.color).toList
-  def pegs(): Set[Peg] = Set(first, second, third, fourth)
+  private def colors(): List[Color] = pegs().map(_.color).toList
+  private def pegs(): Set[Peg] = Set(first, second, third, fourth)
 
   private def amountCorrect(other: Code) = {
     var correct = 0
