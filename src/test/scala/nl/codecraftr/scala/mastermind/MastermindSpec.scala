@@ -23,7 +23,7 @@ class MastermindSpec extends AnyFlatSpec {
   }
 
   "a misplaced peg" should "count as one misplaced peg" in {
-    val result = mixed evaluate new Code(YELLOW, YELLOW, YELLOW, BLUE)
+    val result = mixed evaluate new Code(YELLOW, YELLOW, BLUE, BLUE)
     assert(result == Attempt(0, 1))
   }
 

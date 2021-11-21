@@ -15,11 +15,21 @@ case class Code(private val pegs: Set[Peg]) {
     Attempt(correct.amountOfPegs(), misplaced.amountOfPegs())
   }
 
-  private def misplacedPegs(other: Code) = Code(other.pegs.filter(peg => colors().contains(peg.color)))
-
-  private def colors(): List[Color] = pegs.map(_.color).toList
+  private def misplacedPegs(other: Code) = {
+    var counted = Set[Peg]()
+    val result = other.pegs.filter(peg => {
+      val matched = pegs.diff(counted).find(_.color == peg.color)
+      matched.exists((p: Peg) => {
+        counted += p
+        true
+      })
+    })
+    Code(result)
+  }
 
   private def correctPegs(other: Code) = Code(other.pegs.intersect(pegs))
 
   private def amountOfPegs() = pegs.size
+
+  private def colors(): List[Color] = pegs.map(_.color).toList
 }
