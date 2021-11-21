@@ -1,6 +1,6 @@
 package nl.codecraftr.scala.mastermind
 
-import nl.codecraftr.scala.mastermind.Color.BLUE
+import nl.codecraftr.scala.mastermind.Color.{BLUE, Color}
 
 object Mastermind {
   private val code = Code(BLUE, BLUE, BLUE, BLUE)
@@ -20,11 +20,10 @@ object Mastermind {
   }
 }
 
-case class Code(first: String, second: String, third: String, fourth: String)
+case class Code(first: Color, second: Color, third: Color, fourth: Color)
 
 object Color extends Enumeration {
   type Color = Value
 
-  val BLUE = "blue"
-  val RED = "red"
+  val BLUE, RED = Value
 }
