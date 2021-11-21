@@ -15,16 +15,12 @@ case class Code(private val pegs: Set[Peg]) {
     val correct = correctPegs(other)
     val codeRemainder = Code(pegs diff correct.pegs)
     val otherRemainder = Code(other.pegs diff correct.pegs)
-    val misplaced: Int = codeRemainder amountMisplaced otherRemainder
-    Result(correct.pegs.size, misplaced)
+    val misplaced = codeRemainder misplacedPegs otherRemainder
+    Result(correct.pegs.size, misplaced.size)
   }
 
-  private def amountMisplaced(code: Code) = {
-    colors().foldRight(0)((peg, count) =>
-      if (code.colors().contains(peg))
-        count + 1
-      else count
-    )
+  private def misplacedPegs(other: Code) = {
+    other.pegs.filter(peg => colors().contains(peg.color))
   }
 
   private def colors(): List[Color] = pegs.map(_.color).toList
