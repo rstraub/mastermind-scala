@@ -16,14 +16,13 @@ case class Code(private val pegs: Set[Peg]) {
     val codeRemainder = Code(pegs diff correct.pegs)
     val otherRemainder = Code(other.pegs diff correct.pegs)
     val misplaced = codeRemainder misplacedPegs otherRemainder
-    Attempt(correct.pegs.size, misplaced.size)
+    Attempt(correct.pegs.size, misplaced.pegs.size)
   }
 
-  private def misplacedPegs(other: Code) = {
-    other.pegs.filter(peg => colors().contains(peg.color))
-  }
+  private def misplacedPegs(other: Code) = Code(other.pegs.filter(peg => colors().contains(peg.color)))
 
   private def colors(): List[Color] = pegs.map(_.color).toList
+
   private def correctPegs(other: Code) = Code(other.pegs.intersect(pegs))
 }
 
