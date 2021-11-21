@@ -19,3 +19,10 @@ object Mastermind {
 }
 
 case class Code(first: String, second: String, third: String, fourth: String)
+
+class Color extends Enumeration {
+  type Color = Value
+
+  val BLUE = "blue"
+  val RED = "red"
+}
