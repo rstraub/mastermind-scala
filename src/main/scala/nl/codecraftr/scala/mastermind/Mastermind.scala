@@ -27,7 +27,7 @@ case class Code(private val pegs: Set[Peg]) {
   private def amountOfPegs() = pegs.size
 }
 
-case class Attempt(correct: Int, misplaced: Int)
+
 
 object Color extends Enumeration {
   type Color = Value
