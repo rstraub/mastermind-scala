@@ -6,9 +6,9 @@ case class Mastermind(secret: Code) {
   def evaluate(guess: Code): Result = secret.evaluate(guess)
 }
 
-case class Code(first: Peg, second: Peg, third: Peg, fourth: Peg) {
+case class Code(pegs: Set[Peg]) {
   def this(first: Color, second: Color, third: Color, fourth: Color) {
-    this(Peg(1, first), Peg(2, second), Peg(3, third), Peg(4, fourth))
+    this(Set(Peg(1, first), Peg(2, second), Peg(3, third), Peg(4, fourth)))
   }
 
   def evaluate(other: Code): Result = {
@@ -28,9 +28,8 @@ case class Code(first: Peg, second: Peg, third: Peg, fourth: Peg) {
   }
 
   private def amountCorrect(other: Code) = correctPegs(other).size
-  private def correctPegs(other: Code) = other.pegs().intersect(pegs())
-  private def pegs(): Set[Peg] = Set(first, second, third, fourth)
-  private def colors(): List[Color] = pegs().map(_.color).toList
+  private def correctPegs(other: Code) = other.pegs.intersect(pegs)
+  private def colors(): List[Color] = pegs.map(_.color).toList
 }
 
 case class Result(correct: Int, misplaced: Int)
