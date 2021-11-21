@@ -12,29 +12,27 @@ case class Code(private val pegs: Set[Peg]) {
   }
 
   def evaluate(other: Code): Result = {
-    val correct: Int = amountCorrect(other)
-    val misplaced: Int = amountMisplaced(other)
-    Result(correct, misplaced)
+    val correct = correctPegs(other)
+    val codeRemainder = Code(pegs diff correct.pegs)
+    val otherRemainder = Code(other.pegs diff correct.pegs)
+    val misplaced: Int = codeRemainder amountMisplaced otherRemainder
+    Result(correct.pegs.size, misplaced)
   }
 
   private def amountMisplaced(code: Code) = {
-    if (amountCorrect(code) != 0) 0 else {
-      colors().foldRight(0)((peg, count) =>
-        if (code.colors().contains(peg))
-          count + 1
-        else count
-      )
-    }
+    colors().foldRight(0)((peg, count) =>
+      if (code.colors().contains(peg))
+        count + 1
+      else count
+    )
   }
 
-  private def amountCorrect(other: Code) = correctPegs(other).pegs.size
-
-  private def correctPegs(other: Code) = Code(other.pegs.intersect(pegs))
-
   private def colors(): List[Color] = pegs.map(_.color).toList
+  private def correctPegs(other: Code) = Code(other.pegs.intersect(pegs))
 }
 
 case class Result(correct: Int, misplaced: Int)
+
 case class Peg(position: Int, color: Color)
 
 object Color extends Enumeration {
