@@ -27,15 +27,10 @@ case class Code(first: Peg, second: Peg, third: Peg, fourth: Peg) {
     }
   }
 
-  private def colors(): List[Color] = pegs().map(_.color).toList
-
-  private def amountCorrect(other: Code) = {
-    correctPegs(other).size
-  }
-
+  private def amountCorrect(other: Code) = correctPegs(other).size
   private def correctPegs(other: Code) = other.pegs().intersect(pegs())
-
   private def pegs(): Set[Peg] = Set(first, second, third, fourth)
+  private def colors(): List[Color] = pegs().map(_.color).toList
 }
 
 case class Result(correct: Int, misplaced: Int)
