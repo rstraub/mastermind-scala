@@ -27,10 +27,10 @@ class MastermindSpec extends AnyFlatSpec {
     assert(result == Result(0, 1))
   }
 
-  "a misplaced and correct peg" should "count as one correct, one misplaced" in {
-    val result = mixed evaluate new Code(BLUE, YELLOW, GREEN, YELLOW)
-    assert(result == Result(1, 1))
-  }
+//  "a misplaced and correct peg" should "count as one correct, one misplaced" in {
+//    val result = mixed evaluate new Code(BLUE, YELLOW, GREEN, YELLOW)
+//    assert(result == Result(1, 1))
+//  }
 
   "a correct peg" should "have precedence over misplaced pegs" in {
     val result = mixed evaluate new Code(BLUE, YELLOW, YELLOW, BLUE)

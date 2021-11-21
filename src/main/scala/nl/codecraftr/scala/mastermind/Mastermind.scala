@@ -19,15 +19,16 @@ case class Code(first: Peg, second: Peg, third: Peg, fourth: Peg) {
 
   private def amountMisplaced(code: Code) = {
     if (amountCorrect(code) != 0) 0 else {
-      pegs().foldRight(0)((peg, count) =>
-        if (code.pegs().contains(peg))
+      colors().foldRight(0)((peg, count) =>
+        if (code.colors().contains(peg))
           count + 1
         else count
       )
     }
   }
 
-  def pegs(): List[Color] = List(first, second, third, fourth).map(_.color)
+  def colors(): List[Color] = pegs().map(_.color).toList
+  def pegs(): Set[Peg] = Set(first, second, third, fourth)
 
   private def amountCorrect(other: Code) = {
     var correct = 0
