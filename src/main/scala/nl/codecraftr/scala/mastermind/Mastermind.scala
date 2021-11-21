@@ -1,7 +1,9 @@
 package nl.codecraftr.scala.mastermind
 
+import nl.codecraftr.scala.mastermind.Color.BLUE
+
 object Mastermind {
-  private val code = Code("blue", "blue", "blue", "blue")
+  private val code = Code(BLUE, BLUE, BLUE, BLUE)
 
   def evaluate(guess: Code): (Int, Int) = {
     var correct = 0
@@ -20,7 +22,7 @@ object Mastermind {
 
 case class Code(first: String, second: String, third: String, fourth: String)
 
-class Color extends Enumeration {
+object Color extends Enumeration {
   type Color = Value
 
   val BLUE = "blue"
