@@ -6,7 +6,7 @@ case class Mastermind(secret: Code) {
   def evaluate(guess: Code): Result = secret.evaluate(guess)
 }
 
-case class Code(pegs: Set[Peg]) {
+case class Code(private val pegs: Set[Peg]) {
   def this(first: Color, second: Color, third: Color, fourth: Color) {
     this(Set(Peg(1, first), Peg(2, second), Peg(3, third), Peg(4, fourth)))
   }
@@ -27,8 +27,10 @@ case class Code(pegs: Set[Peg]) {
     }
   }
 
-  private def amountCorrect(other: Code) = correctPegs(other).size
-  private def correctPegs(other: Code) = other.pegs.intersect(pegs)
+  private def amountCorrect(other: Code) = correctPegs(other).pegs.size
+
+  private def correctPegs(other: Code) = Code(other.pegs.intersect(pegs))
+
   private def colors(): List[Color] = pegs.map(_.color).toList
 }
 
