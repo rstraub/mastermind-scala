@@ -17,3 +17,5 @@ object Mastermind {
     (correct, 0)
   }
 }
+
+case class Code(val first: String, val second: String, val third: String, val fourth: String)
