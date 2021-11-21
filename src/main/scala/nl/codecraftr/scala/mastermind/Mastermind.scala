@@ -3,7 +3,7 @@ package nl.codecraftr.scala.mastermind
 import nl.codecraftr.scala.mastermind.Color.Color
 
 case class Mastermind(secret: Code) {
-  def evaluate(guess: Code): Attempt = secret.evaluate(guess)
+  def evaluate(guess: Code): Attempt = secret evaluate guess
 }
 
 case class Code(private val pegs: Set[Peg]) {
