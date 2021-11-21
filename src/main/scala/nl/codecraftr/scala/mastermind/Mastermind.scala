@@ -1,11 +1,9 @@
 package nl.codecraftr.scala.mastermind
 
-import nl.codecraftr.scala.mastermind.Color.{BLUE, Color}
+import nl.codecraftr.scala.mastermind.Color.Color
 
-object Mastermind {
-  private val code = Code(BLUE, BLUE, BLUE, BLUE)
-
-  def evaluate(guess: Code): Result = code.evaluate(guess)
+case class Mastermind(secret: Code) {
+  def evaluate(guess: Code): Result = secret.evaluate(guess)
 }
 
 case class Code(first: Color, second: Color, third: Color, fourth: Color) {
