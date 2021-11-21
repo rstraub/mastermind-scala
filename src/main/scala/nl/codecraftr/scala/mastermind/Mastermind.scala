@@ -29,8 +29,4 @@ case class Code(private val pegs: Set[Peg]) {
 
 
 
-object Color extends Enumeration {
-  type Color = Value
 
-  val YELLOW, BLUE, RED, WHITE, GREEN = Value
-}
