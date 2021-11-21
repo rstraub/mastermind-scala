@@ -1,21 +1,21 @@
 package nl.codecraftr.scala.mastermind
 
 object Mastermind {
-  private val code = ("blue", "blue", "blue", "blue")
+  private val code = Code("blue", "blue", "blue", "blue")
 
   def evaluate(guess: (String, String, String, String)): (Int, Int) = {
     var correct = 0
-    if (guess._1 == code._1)
+    if (guess._1 == code.first)
       correct += 1
-    if (guess._2 == code._2)
+    if (guess._2 == code.second)
       correct += 1
-    if (guess._3 == code._3)
+    if (guess._3 == code.third)
       correct += 1
-    if (guess._4 == code._4)
+    if (guess._4 == code.fourth)
       correct += 1
 
     (correct, 0)
   }
 }
 
-case class Code(val first: String, val second: String, val third: String, val fourth: String)
+case class Code(first: String, second: String, third: String, fourth: String)
