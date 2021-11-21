@@ -9,31 +9,31 @@ class MastermindSpec extends AnyFlatSpec {
 
   "four wrong pegs" should "count as zero correct, zero misplaced" in {
     val result = allBlue evaluate new Code(RED, RED, RED, RED)
-    assert(result == Result(0, 0))
+    assert(result == Attempt(0, 0))
   }
 
   "four correct pegs" should "count as four correct, zero misplaced" in {
     val result = allBlue evaluate new Code(BLUE, BLUE, BLUE, BLUE)
-    assert(result == Result(4, 0))
+    assert(result == Attempt(4, 0))
   }
 
   "a correct peg" should "count as one correct peg" in {
     val result = allBlue evaluate new Code(BLUE, RED, RED, RED)
-    assert(result == Result(1, 0))
+    assert(result == Attempt(1, 0))
   }
 
   "a misplaced peg" should "count as one misplaced peg" in {
     val result = mixed evaluate new Code(YELLOW, YELLOW, YELLOW, BLUE)
-    assert(result == Result(0, 1))
+    assert(result == Attempt(0, 1))
   }
 
   "a misplaced and correct peg" should "count as one correct, one misplaced" in {
     val result = mixed evaluate new Code(BLUE, YELLOW, GREEN, YELLOW)
-    assert(result == Result(1, 1))
+    assert(result == Attempt(1, 1))
   }
 
   "a correct peg" should "have precedence over misplaced pegs" in {
     val result = mixed evaluate new Code(BLUE, YELLOW, YELLOW, BLUE)
-    assert(result == Result(1, 0))
+    assert(result == Attempt(1, 0))
   }
 }
