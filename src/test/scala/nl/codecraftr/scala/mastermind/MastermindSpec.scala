@@ -12,7 +12,9 @@ class MastermindSpec extends AnyFlatSpec {
     val result = Mastermind.evaluate("blue", "blue", "blue", "blue")
     assert(result == (4, 0))
   }
+
   "one correct peg" should "return one correct, zero misplaced" in {
     val result = Mastermind.evaluate("blue", "red", "red", "red")
+    assert(result == (1, 0))
   }
 }
