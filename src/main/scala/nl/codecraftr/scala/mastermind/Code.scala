@@ -30,6 +30,4 @@ case class Code(private val pegs: Set[Peg]) {
   private def correctPegs(other: Code) = Code(other.pegs.intersect(pegs))
 
   private def amountOfPegs() = pegs.size
-
-  private def colors(): List[Color] = pegs.map(_.color).toList
 }
