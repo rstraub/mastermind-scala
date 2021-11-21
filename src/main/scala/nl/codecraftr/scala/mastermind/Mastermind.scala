@@ -3,15 +3,15 @@ package nl.codecraftr.scala.mastermind
 object Mastermind {
   private val code = Code("blue", "blue", "blue", "blue")
 
-  def evaluate(guess: (String, String, String, String)): (Int, Int) = {
+  def evaluate(guess: Code): (Int, Int) = {
     var correct = 0
-    if (guess._1 == code.first)
+    if (guess.first == code.first)
       correct += 1
-    if (guess._2 == code.second)
+    if (guess.second == code.second)
       correct += 1
-    if (guess._3 == code.third)
+    if (guess.second == code.third)
       correct += 1
-    if (guess._4 == code.fourth)
+    if (guess.second == code.fourth)
       correct += 1
 
     (correct, 0)
