@@ -7,4 +7,9 @@ class MastermindSpec extends AnyFlatSpec {
     val result = Mastermind.evaluate("blue", "blue", "blue", "blue")
     assert(result == (0, 0))
   }
+
+  "four correct pegs" should "return four right, zero misplaced" in {
+    val result = Mastermind.evaluate("blue", "blue", "blue", "blue")
+    assert(result == (4, 0))
+  }
 }
